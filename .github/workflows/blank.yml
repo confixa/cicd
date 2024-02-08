@@ -30,12 +30,12 @@ jobs:
         GOOGLE_PROJECT: confixa-rnd
       run: |
         gcloud auth configure-docker asia-south1-docker.pkg.dev
-        docker build -t asia-south1-docker.pkg.dev/confixa-rnd/confixa-docker-images/abc:${{ github.sha }} .
-        docker push asia-south1-docker.pkg.dev/confixa-rnd/confixa-docker-images/abc:${{ github.sha }}
+        docker build -t asia-south1-docker.pkg.dev/confixa-rnd/confixa-docker-images/dev-confixa-backend:${{ github.sha }} .
+        docker push asia-south1-docker.pkg.dev/confixa-rnd/confixa-docker-images/dev-confixa-backend:${{ github.sha }}
         
     - name: Push Docker Image to Artifact Registry
       run: |
-        # docker push asia-south1-docker.pkg.dev/confixa-rnd/confixa-docker-images/abc:${{ github.sha }}
+        # docker push asia-south1-docker.pkg.dev/confixa-rnd/confixa-docker-images/dev-confixa-backend:${{ github.sha }}
 
         git clone https://${{ secrets.USER }}:${{ secrets.TOKEN }}@github.com/confixa/confixa-gitops
         cd confixa-gitops
