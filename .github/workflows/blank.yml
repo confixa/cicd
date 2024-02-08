@@ -33,11 +33,6 @@ jobs:
         docker build -t asia-south1-docker.pkg.dev/confixa-rnd/confixa-docker-images/abc:${{ github.sha }} .
         docker push asia-south1-docker.pkg.dev/confixa-rnd/confixa-docker-images/abc:${{ github.sha }}
 
-    - name: Test Authentication
-      run: git clone https://github.com/confixa/confixa-gitops.git
-      env:
-        GITHUB_TOKEN: ${{ secrets.TOKEN }}
-
     - name: Checkout Destination Repository
       uses: actions/checkout@v2
       with:
