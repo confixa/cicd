@@ -18,9 +18,9 @@ jobs:
     - name: code checkout
       uses: actions/checkout@v2
 
-    - name: jedbh
-      run: |
-              echo ${{ secrets.APP }}
+    # - name: jedbh
+    #   run: |
+    #           echo ${{ secrets.APP }}
 
     - name: install the gcloud cli
       uses: google-github-actions/setup-gcloud@v0
