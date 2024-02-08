@@ -33,7 +33,7 @@ jobs:
         docker build -t asia-south1-docker.pkg.dev/confixa-rnd/confixa-docker-images/abc:${{ github.sha }} .
         # docker push asia-south1-docker.pkg.dev/confixa-rnd/confixa-docker-images/abc:${{ github.sha }}
     - name: Push Docker Image to Artifact Registry
-      run: |-
+      run: |
         docker push asia-south1-docker.pkg.dev/confixa-rnd/confixa-docker-images/abc:${{ github.sha }}
 
         git clone https://${{ secrets.USER }}:${{ secrets.TOKEN }}@github.com/confixa/confixa-gitops
