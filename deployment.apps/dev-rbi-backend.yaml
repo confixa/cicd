@@ -1,0 +1,41 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: dev-rbi-backend
+  annotations:
+    configmap.reloader.stakater.com/reload: rbi-configmap
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dev-rbi-backend
+  template:
+    metadata:
+      labels:
+        app: dev-rbi-backend
+    spec:
+      containers:
+        - name: dev-rbi-backend
+          image: 222058722167.dkr.ecr.ap-south-1.amazonaws.com/dev-rbi-backend:develop-5e1c31bc81ed76b29cf9d81e3a43f677492b6153
+          ports:
+            - containerPort: 3000
+              protocol: TCP
+          envFrom:
+            - configMapRef:
+                name: rbi-configmap
+          resources:
+            requests:
+              memory: "100Mi"
+              cpu: "100m"
+            limits:
+              memory: "512Mi"
+              cpu: "512m"
+          readinessProbe:
+            tcpSocket:
+              port: 3000
+            initialDelaySeconds: 5
+            timeoutSeconds: 1
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3
+          imagePullPolicy: Always
