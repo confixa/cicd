@@ -28,6 +28,6 @@ jobs:
       env:
         GOOGLE_PROJECT: confixa-rnd
       run: |
-        gcloud auth configure-docker asia-south1-docker.pkg.dev
+        gcloud auth configure-docker asia-south1-docker.pkg.dev/${{ secrets.PROJECT_ID }}/confixa-docker-images
         docker build -t asia-south1-docker.pkg.dev/${{ secrets.PROJECT_ID }}/confixa-docker-images/abc:latest .
         docker push asia-south1-docker.pkg.dev/${{ secrets.PROJECT_ID }}/confixa-docker-images/abc:latest
