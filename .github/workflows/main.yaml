@@ -1,7 +1,7 @@
 name: Push to GCP 
 
-env:
-  BRANCH1: ${{ vars.BRANCH }}
+# env:
+#   BRANCH1: ${{ vars.BRANCH }}
 
 on: 
   push:
@@ -15,6 +15,8 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment: 
+      name: DEV
     
     steps:
     - name: Checkout code
@@ -24,7 +26,7 @@ jobs:
       run: |
         echo $BRANCH1
         echo ${{ vars.BRANCH }}
-        echo ${{ env.DEV.BRANCH }}
+        echo ${{ vars.BRANCH_ENV }}
          
     - name: Setup gcloud
       uses: google-github-actions/setup-gcloud@v0
