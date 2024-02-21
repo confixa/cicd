@@ -1,42 +1,42 @@
-name: Push to GCP
+name: Push to GCP 
 
 env:
   BRANCH1: ${{ vars.BRANCH }}
 
-on:
+on: 
   push:
     branches:
-    - $BRANCH1
+      - ${{ env.BRANCH1 }}
 
 permissions:
-    id-token: write
-    contents: read
-
+  id-token: write
+  contents: read
+      
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    
     steps:
-
-    - name: code checkout
+    - name: Checkout code
       uses: actions/checkout@v2
-      
-    - name: print
+    
+    - name: Print env vars  
       run: |
-            echo ${{ vars.BRANCH }}
-            echo \'${{ vars.BRANCH }}\'
-            echo ${{ env.BRANCH1 }}
-            echo $BRANCH1
-
-    - name: install the gcloud cli
+        echo ${{ vars.BRANCH }}
+        echo '${{ vars.BRANCH }}'
+        echo ${{ env.BRANCH1 }}
+        echo $BRANCH1
+        
+    - name: Setup gcloud
       uses: google-github-actions/setup-gcloud@v0
-      with:
+      with: 
         project_id: ${{ secrets.PROJECT_ID }}
         service_account_key: ${{ secrets.GAC }}
         export_default_credentials: true
-
-    - name: build and push the docker image
+        
+    - name: Build and push image
       env:
-        GOOGLE_PROJECT: ${{ secrets.PROJECT_ID }}
+        GOOGLE_PROJECT: ${{ secrets.PROJECT_ID }}  
       run: |
         gcloud auth configure-docker ${{ secrets.REGION }}-docker.pkg.dev
         docker build -t ${{ secrets.GCR }}:${{ github.sha }} .
