@@ -19,7 +19,7 @@ jobs:
       
     - name: print
       run: |
-            echo ${{ secrets.PROJECT_ID }}
+            echo ${{ vars.BRANCH }}
 
     - name: install the gcloud cli
       uses: google-github-actions/setup-gcloud@v0
@@ -30,7 +30,7 @@ jobs:
 
     - name: build and push the docker image
       env:
-        GOOGLE_PROJECT: confixa-rnd
+        GOOGLE_PROJECT: ${{ secrets.PROJECT_ID }}
       run: |
         gcloud auth configure-docker ${{ secrets.REGION }}-docker.pkg.dev
         docker build -t ${{ secrets.GCR }}:${{ github.sha }} .
