@@ -6,7 +6,7 @@ env:
 on: 
   push:
     branches:
-      - ${{ vars.BRANCH }}
+      - $BRANCH1
 
 permissions:
   id-token: write
