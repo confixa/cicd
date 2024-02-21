@@ -1,12 +1,12 @@
 name: Push to GCP 
 
-env:
-  BRANCH1: ${{ vars.BRANCH }}
+# env:
+#   BRANCH1: ${{ vars.BRANCH }}
 
 on: 
   push:
     branches:
-      - $BRANCH1
+      - ${{ vars.BRANCH }}
 
 permissions:
   id-token: write
