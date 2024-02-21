@@ -6,7 +6,7 @@ env:
 on: 
   push:
     branches:
-      - $BRANCH1
+      - ${{ vars.BRANCH }}
 
 permissions:
   id-token: write
@@ -23,7 +23,7 @@ jobs:
     - name: Print env vars  
       run: |
         echo $BRANCH1
-        ${{ vars.BRANCH }}
+        echo ${{ vars.BRANCH }}
          
     - name: Setup gcloud
       uses: google-github-actions/setup-gcloud@v0
