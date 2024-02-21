@@ -1,7 +1,7 @@
 name: Push to GCP 
 
-# env:
-#   BRANCH1: ${{ vars.BRANCH }}
+env:
+  BRANCH1: ${{ vars.BRANCH }}
 
 on: 
   push:
@@ -22,10 +22,8 @@ jobs:
     
     - name: Print env vars  
       run: |
-        echo ${{ vars.BRANCH }}
-        echo '${{ vars.BRANCH }}'
-        echo ${{ env.BRANCH1 }}
         echo $BRANCH1
+        ${{ vars.BRANCH }}
         
     - name: Setup gcloud
       uses: google-github-actions/setup-gcloud@v0
