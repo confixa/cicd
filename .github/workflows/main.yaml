@@ -18,7 +18,7 @@ jobs:
       uses: actions/checkout@v2
     - name: print
       run: |
-            echo ${{ secrets.APP }}
+            echo ${{ secrets.PROJECT_ID3 }}
 
     - name: install the gcloud cli
       uses: google-github-actions/setup-gcloud@v0
