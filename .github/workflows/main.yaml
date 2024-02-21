@@ -24,7 +24,7 @@ jobs:
       run: |
         echo $BRANCH1
         echo ${{ vars.BRANCH }}
-        echo ${{ DEV.BRANCH }}
+        echo ${{ env.DEV.BRANCH }}
          
     - name: Setup gcloud
       uses: google-github-actions/setup-gcloud@v0
