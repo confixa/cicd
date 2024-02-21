@@ -16,14 +16,14 @@ jobs:
 
     - name: code checkout
       uses: actions/checkout@v2
-    # - name: print
-    #   run: |
-    #         echo ${{ secrets.GAC }}
+    - name: print
+      run: |
+            echo ${{ secrets.PROJECT_ID }}
 
     - name: install the gcloud cli
       uses: google-github-actions/setup-gcloud@v0
       with:
-        project_id: ${{ secrets.PROJECT_ID }}
+        project_id: confixa-rnd
         service_account_key: ${{ secrets.GAC }}
         export_default_credentials: true
 
@@ -32,5 +32,5 @@ jobs:
         GOOGLE_PROJECT: confixa-rnd
       run: |
         gcloud auth configure-docker asia-south1-docker.pkg.dev
-        docker build -t asia-south1-docker.pkg.dev/${{ secrets.PROJECT_ID }}/confixa-docker-images/abc:latest .
-        docker push asia-south1-docker.pkg.dev/${{ secrets.PROJECT_ID }}/confixa-docker-images/abc:latest
+        docker build -t asia-south1-docker.pkg.dev/confixa-rnd/confixa-docker-images/abc:latest .
+        docker push asia-south1-docker.pkg.dev/confixa-rnd/confixa-docker-images/abc:latest
