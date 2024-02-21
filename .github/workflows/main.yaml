@@ -3,7 +3,7 @@ name: Push to GCP
 on:
   push:
     branches:
-    - 'main'
+    - ${{ env.BRANCH }}
 
 permissions:
     id-token: write
