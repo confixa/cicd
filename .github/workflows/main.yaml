@@ -33,5 +33,5 @@ jobs:
         GOOGLE_PROJECT: confixa-rnd
       run: |
         gcloud auth configure-docker ${{ secrets.REGION }}-docker.pkg.dev
-        docker build -t ${{ secrets.GCR }}${{ github.sha }} .
-        docker push ${{ secrets.GCR }}${{ github.sha }}
+        docker build -t ${{ secrets.GCR }}:${{ github.sha }} .
+        docker push ${{ secrets.GCR }}:${{ github.sha }}
