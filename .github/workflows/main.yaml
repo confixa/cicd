@@ -24,7 +24,7 @@ jobs:
     - name: install the gcloud cli
       uses: google-github-actions/setup-gcloud@v0
       with:
-        project_id: confixa-rnd
+        project_id: ${{ secrets.PROJECT_ID }}
         service_account_key: ${{ secrets.GAC }}
         export_default_credentials: true
 
