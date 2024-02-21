@@ -1,8 +1,8 @@
 name: Push to GCP 
 
-# env:
-#   BRANCH1: ${{ vars.BRANCH }}
-
+env: 
+      name: DEV
+      
 on: 
   push:
     branches:
@@ -15,8 +15,6 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment: 
-      name: DEV
     
     steps:
     - name: Checkout code
@@ -25,6 +23,7 @@ jobs:
     - name: Print env vars  
       run: |
         echo $BRANCH1
+        echo $name
         echo ${{ vars.BRANCH }}
         echo ${{ vars.BRANCH_ENV }}
          
