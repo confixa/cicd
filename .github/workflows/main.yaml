@@ -1,9 +1,12 @@
 name: Push to GCP
 
+env:
+  BRANCH1: ${{ vars.BRANCH }}
+
 on:
   push:
     branches:
-    - ${{ env.BRANCH }}
+    - $BRANCH1
 
 permissions:
     id-token: write
@@ -21,7 +24,8 @@ jobs:
       run: |
             echo ${{ vars.BRANCH }}
             echo \'${{ vars.BRANCH }}\'
-            echo ${{ env.BRANCH }}
+            echo ${{ env.BRANCH1 }}
+            echo $BRANCH1
 
     - name: install the gcloud cli
       uses: google-github-actions/setup-gcloud@v0
