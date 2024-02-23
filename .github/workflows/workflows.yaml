@@ -28,7 +28,7 @@ jobs:
           $HOME/pack build dev-confixa-backend:${{ github.sha }} --builder
           gcr.io/buildpacks/builder
       - name: install the gcloud cli
-        uses: google-github-actions/setup-gcloud@v0.4.0
+        uses: google-github-actions/setup-gcloud@v0.4.0 
         with:
           project_id: ${{ secrets.PROJECT_ID}}
           service_account_key: ${{ secrets.GAC }}
