@@ -35,7 +35,7 @@ jobs:
     - name: Gitting
       run: |
         
-        git clone https://${{ secrets.GH_USER }}:${{ secrets.TOKEN }}@github.com/confixa/confixa-gitops
+        git clone https://${{ secrets.GH_USER }}:${{ secrets.TOKEN }}@github.com/confixa/confixa-gitops 
         cd confixa-gitops
         
         git checkout confixa-gitops
