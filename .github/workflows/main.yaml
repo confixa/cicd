@@ -16,16 +16,16 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-    
-    - name: Print env vars  
-      run: |
-        echo $BRANCH
+
+    -  name: print
+       run: |
+                 echo ${{ secrets.PROJECT_ID }} ,  ${{ secrets.REGION }} , ${{ secrets.GCR }}
          
     - name: Setup gcloud
       uses: google-github-actions/setup-gcloud@v0
       with: 
         project_id: ${{ secrets.PROJECT_ID }}
-        service_account_key: ${{ secrets.GAC }}
+        service_account_key: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
         export_default_credentials: true
         
     - name: Build and push image
