@@ -43,11 +43,13 @@ jobs:
         git config user.name "$GITHUB_ACTOR"
         git config user.email "$GITHUB_ACTOR@wohlig.com"
 
-        yq e '.spec.template.spec.containers[0].image = "asia-south1-docker.pkg.dev/confixa-rnd/confixa-docker-images:confixa-gitops"' -i confixa/confixa-gitops/deployment.apps/dev-confixa-backend.yaml
+        ls
+
+        # yq e '.spec.template.spec.containers[0].image = "asia-south1-docker.pkg.dev/confixa-rnd/confixa-docker-images:confixa-gitops"' -i confixa/confixa-gitops/deployment.apps/dev-confixa-backend.yaml
   
-        git add .
-        git commit -m "updating newer image"  
-        git push --set-upstream origin main
+        # git add .
+        # git commit -m "updating newer image"  
+        # git push --set-upstream origin main
         
     # - name: Checkout Destination Repository
     #   uses: actions/checkout@v2
