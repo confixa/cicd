@@ -45,11 +45,11 @@ jobs:
 
         ls
 
-        # yq e '.spec.template.spec.containers[0].image = "asia-south1-docker.pkg.dev/confixa-rnd/confixa-docker-images:confixa-gitops"' -i deployment.apps/dev-confixa-backend.yaml
+        yq e '.spec.template.spec.containers[0].image = "asia-south1-docker.pkg.dev/confixa-rnd/confixa-docker-images:confixa-gitops"' -i deployment.apps/dev-confixa-backend.yaml
   
-        # git add .
-        # git commit -m "updating newer image"  
-        # git push --set-upstream origin main
+        git add .
+        git commit -m "updating newer image"  
+        git push --set-upstream origin main
         
     # - name: Checkout Destination Repository
     #   uses: actions/checkout@v2
