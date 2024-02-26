@@ -16,10 +16,6 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-
-    -  name: print
-       run: |
-                 echo ${{ secrets.PROJECT_ID }} ,  ${{ secrets.REGION }} , ${{ secrets.GCR }}
          
     - name: Setup gcloud
       uses: google-github-actions/setup-gcloud@v0
@@ -35,3 +31,27 @@ jobs:
         gcloud auth configure-docker ${{ secrets.REGION }}-docker.pkg.dev
         docker build -t ${{ secrets.GCR }}:${{ github.sha }} .
         docker push ${{ secrets.GCR }}:${{ github.sha }}
+
+    - name: Gitting
+      run: |
+        
+        git clone https://${{ secrets.GH_USER }}:${{ secrets.TOKEN }}@github.com/confixa/confixa-gitops
+        cd confixa-gitops
+        
+        git checkout confixa-gitops
+
+        git config user.name "$GITHUB_ACTOR"
+        git config user.email "$GITHUB_ACTOR@wohlig.com"
+
+        yq e '.spec.template.spec.containers[0].image = "asia-south1-docker.pkg.dev/confixa-rnd/confixa-docker-images:confixa-gitops"' -i confixa/confixa-gitops/deployment.apps/dev-confixa-backend.yaml
+  
+        git add .
+        git commit -m "updating newer image"  
+        git push --set-upstream origin main
+        
+    # - name: Checkout Destination Repository
+    #   uses: actions/checkout@v2
+    #   with:
+    #       repository: confixa/confixa-gitops  # Replace <destination-repo> with the destination repository's URL
+    #       ref: confixa-gitops  # Specify the branch or tag you want to checkout
+    
